@@ -799,7 +799,8 @@ html, body {
 .tab-list {
   display: flex;
   gap: 24px; /* Per Figma */
-  padding-left: var(--space-6);
+  margin-left: var(--space-8); /* 36px margin from content edge */
+  padding-left: var(--space-6); /* 24px padding before first tab */
   padding-right: 0;
   padding-top: var(--space-6);
   padding-bottom: 0;
