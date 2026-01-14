@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 318 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Divider (Stroke)">
+<mask id="path-1-inside-1_18848_174138" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M318 1H0V0H318V1Z"/>
+</mask>
+<path d="M0 1H-1V2H0V1ZM318 1V2H319V1H318ZM0 0V-1H-1V0H0ZM318 0H319V-1H318V0ZM0 1V2H318V1V0H0V1ZM0 0H-1V1H0H1V0H0ZM318 0V-1H0V0V1H318V0ZM318 1H319V0H318H317V1H318Z" fill="var(--stroke-0, black)" fill-opacity="0.2" mask="url(#path-1-inside-1_18848_174138)"/>
+</g>
+</svg>

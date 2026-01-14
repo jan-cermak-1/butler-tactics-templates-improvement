@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objectives & Tactics - Butler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar - Main Menu -->
+    <aside class="sidebar">
+      <!-- Header: Production / BUTLER -->
+      <div class="sidebar-header">
+        <div class="sidebar-header-left">
+          <svg class="sidebar-logo" viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M9 2l7 4v6l-7 4-7-4V6l7-4z" fill="currentColor"/>
+          </svg>
+          <div class="sidebar-header-text">
+            <span class="sidebar-env">Production</span>
+            <span class="sidebar-app-name">BUTLER</span>
+          </div>
+        </div>
+        <button class="sidebar-menu-btn" title="Menu">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <circle cx="9" cy="4" r="1.5" fill="currentColor"/>
+            <circle cx="9" cy="9" r="1.5" fill="currentColor"/>
+            <circle cx="9" cy="14" r="1.5" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="sidebar-nav">
+        <!-- Section: Administration -->
+        <div class="nav-section collapsed">
+          <button class="nav-section-header">
+            Administration
+            <svg class="chevron" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#" class="nav-item">Pages info</a>
+            <a href="#" class="nav-item">Page tagging</a>
+            <a href="#" class="nav-item">Support interface</a>
+            <a href="#" class="nav-item">OMD</a>
+            <a href="#" class="nav-item">Business toggles</a>
+          </div>
+        </div>
+
+        <!-- Expandable Group: Fuel -->
+        <div class="nav-group expanded" id="fuelGroup">
+          <button class="nav-group-header" onclick="toggleNavGroup('fuelGroup')">
+            <div class="nav-group-left">
+              <svg class="nav-item-icon" viewBox="0 0 18 18" fill="none">
+                <path d="M9 2l7 4v6l-7 4-7-4V6l7-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M9 10V2M9 10l7-4M9 10l-7-4" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              Fuel
+            </div>
+            <svg class="chevron" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-items">
+            <a href="#" class="nav-item active">Objectives & Tactics</a>
+            <a href="#" class="nav-item">Custom scripts</a>
+            <a href="#" class="nav-item">Industry events</a>
+            <a href="#" class="nav-item">Fuel profile labels</a>
+          </div>
+        </div>
+
+        <!-- Library / Components -->
+        <div class="nav-section collapsed">
+          <button class="nav-section-header">
+            Library / Components
+            <svg class="chevron" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#" class="nav-item">Components</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- User Section -->
+      <div class="sidebar-user">
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect fill='%23667eea' width='40' height='40'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Inter, sans-serif' font-size='14' font-weight='600'%3EKB%3C/text%3E%3C/svg%3E" alt="Karl von Banhoff">
+          </div>
+          <span class="sidebar-user-name">Karl von Banhoff</span>
+        </div>
+        <button class="sidebar-logout-btn" title="Logout">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M12 6l3 3-3 3M15 9H7M11 3H4a1 1 0 00-1 1v10a1 1 0 001 1h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <header class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Objectives & Tactics</h1>
+        </div>
+        <div class="page-header-actions">
+          <div class="search-input">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C4.23858 2 2 4.23858 2 7C2 9.76142 4.23858 12 7 12C9.76142 12 12 9.76142 12 7C12 4.23858 9.76142 2 7 2ZM1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7C13 8.47686 12.4664 9.82909 11.5815 10.8744L15.8536 15.1465L15.1465 15.8536L10.8744 11.5815C9.82907 12.4664 8.47685 13 7 13C3.68629 13 1 10.3137 1 7Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <input type="text" placeholder="Search tactics...">
+          </div>
+          <span class="header-divider"></span>
+          <button class="btn btn-invisible btn-filter" id="filterBtn" title="Filter">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5.05001V2H5V5.05001C6.14112 5.28164 7 6.29052 7 7.5C7 8.70948 6.14112 9.71836 5 9.94999V16H4V9.94999C2.85888 9.71836 2 8.70948 2 7.5C2 6.29052 2.85888 5.28164 4 5.05001ZM8.5 10.05L8.50003 2H9.50003L9.5 10.05C10.6411 10.2816 11.5 11.2905 11.5 12.5C11.5 13.7095 10.6411 14.7184 9.50001 14.95L9.50003 16L8.50003 16L8.50001 14.95C7.35888 14.7184 6.5 13.7095 6.5 12.5C6.5 11.2905 7.35888 10.2816 8.5 10.05ZM13 3.05001V2H14V3.05001C15.1411 3.28164 16 4.29052 16 5.5C16 6.70948 15.1411 7.71836 14 7.94999V16H13V7.94999C11.8589 7.71836 11 6.70948 11 5.5C11 4.29052 11.8589 3.28164 13 3.05001ZM13.5 4C12.6716 4 12 4.67157 12 5.5C12 6.32843 12.6716 7 13.5 7C14.3284 7 15 6.32843 15 5.5C15 4.67157 14.3284 4 13.5 4ZM4.5 6C3.67157 6 3 6.67157 3 7.5C3 8.32843 3.67157 9 4.5 9C5.32843 9 6 8.32843 6 7.5C6 6.67157 5.32843 6 4.5 6ZM9 11C8.17157 11 7.5 11.6716 7.5 12.5C7.5 13.3284 8.17157 14 9 14C9.82843 14 10.5 13.3284 10.5 12.5C10.5 11.6716 9.82843 11 9 11Z" fill="currentColor"/>
+            </svg>
+            <span>Filter</span>
+            <span class="filter-badge" id="filterBadge"></span>
+          </button>
+          <span class="header-divider"></span>
+          <button class="btn btn-invisible" title="Export as XLSX">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3 3.5C3 2.11929 4.11929 1 5.5 1H10.6716C11.3346 1 11.9705 1.26339 12.4393 1.73223L14.2678 3.56066C14.7366 4.0295 15 4.66539 15 5.32843V8H14V6H11.5C10.6716 6 10 5.32843 10 4.5V2H5.5C4.67157 2 4 2.67157 4 3.5V14.5C4 15.3284 4.67157 16 5.5 16H9V17H5.5C4.11929 17 3 15.8807 3 14.5V3.5ZM11.8536 2.56066C11.615 2.32214 11.32 2.15306 11 2.06645V4.5C11 4.77614 11.2239 5 11.5 5H13.9335C13.8469 4.67996 13.6779 4.38497 13.4393 4.14645L11.8536 2.56066Z" fill="currentColor"/>
+              <path d="M12 9H6V8H12V9Z" fill="currentColor"/>
+              <path d="M6 11H9V10H6V11Z" fill="currentColor"/>
+              <path d="M17.8535 14.3536L14.5 17.7071L11.1464 14.3536L11.8535 13.6464L14 15.7929V10H15V15.7929L17.1464 13.6464L17.8535 14.3536Z" fill="currentColor"/>
+            </svg>
+            Export as XLSX
+          </button>
+          <span class="header-divider"></span>
+          <button class="btn btn-invisible">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 8.5V3.5H9.5V8.5H14.5V9.5H9.5V14.5H8.5V9.5H3.5V8.5H8.5Z" fill="currentColor"/>
+            </svg>
+            Create objective
+          </button>
+          <span class="header-divider"></span>
+          <button class="btn btn-primary" id="createTacticBtn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 8.5V3.5H9.5V8.5H14.5V9.5H9.5V14.5H8.5V9.5H3.5V8.5H8.5Z" fill="currentColor"/>
+            </svg>
+            Create tactic
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area (gray background, scrollable) -->
+      <div class="content-area">
+        <!-- Tabs - scroll with content -->
+        <div class="tab-list">
+          <button class="tab">Objective templates</button>
+          <button class="tab active">Tactic templates</button>
+        </div>
+
+        <div class="table-container shadow-100">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 36px"></th>
+                <th style="width: 42%">
+                  <button class="table-header-sortable" data-sort="name" onclick="sortTable('name')" aria-label="Sort by Tactic name">
+                    Tactic name
+                    <svg class="sort-icon" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 3v8M4 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </th>
+                <th style="width: 70px">
+                  <button class="table-header-sortable" data-sort="active" onclick="sortTable('active')" aria-label="Sort by Active">
+                    Active
+                    <svg class="sort-icon" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 3v8M4 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </th>
+                <th style="width: 70px">
+                  <button class="table-header-sortable" data-sort="bestPractices" onclick="sortTable('bestPractices')" aria-label="Sort by Best practices">
+                    Best practices
+                    <svg class="sort-icon" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 3v8M4 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </th>
+                <th style="width: 70px">
+                  <button class="table-header-sortable" data-sort="linkedObjectives" onclick="sortTable('linkedObjectives')" aria-label="Sort by Linked Objectives">
+                    Linked Objectives
+                    <svg class="sort-icon" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 3v8M4 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </th>
+                <th>Suggested industry</th>
+                <th style="width: 160px">
+                  <button class="table-header-sortable" data-sort="lastEdit" onclick="sortTable('lastEdit')" aria-label="Sort by Last edit">
+                    Last edit by
+                    <svg class="sort-icon" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 3v8M4 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tacticsTableBody">
+              <!-- Rows will be populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Publish Modal -->
+  <div class="modal-overlay" id="publishModal">
+    <div class="modal shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Publish to activate</h2>
+        <button class="modal-close" id="publishModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">This tactic needs to be published before it can be activated. Would you like to publish and activate it now?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="publishModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="publishModalConfirm">Publish & activate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Tactic Modal -->
+  <div class="modal-overlay" id="createTacticModal">
+    <div class="modal modal-large shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Create Tactic</h2>
+        <button class="modal-close" id="createTacticModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="createTacticName">Tactic name</label>
+          <input type="text" class="form-input" id="createTacticName" placeholder="Enter tactic name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="createTacticIndustries">Industries</label>
+          <select class="form-select" id="createTacticIndustries">
+            <option value="" disabled selected>Select industries</option>
+            <option value="CPG">CPG</option>
+            <option value="Retail">Retail</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Fashion">Fashion</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Technology">Technology</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Sports">Sports</option>
+            <option value="Travel">Travel</option>
+            <option value="Automotive">Automotive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="createTacticSummary">Summary</label>
+          <textarea class="form-textarea" id="createTacticSummary" placeholder="Enter a summary for this tactic..." rows="6"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="createTacticModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="createTacticModalConfirm">Create Tactic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Tactic Modal (Table) -->
+  <div class="modal-overlay" id="tableEditTacticModal">
+    <div class="modal modal-large shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Tactic</h2>
+        <button class="modal-close" id="tableEditTacticModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="tableEditTacticName">Tactic name</label>
+          <input type="text" class="form-input" id="tableEditTacticName">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tableEditTacticIndustries">Industries</label>
+          <select class="form-select" id="tableEditTacticIndustries">
+            <option value="" disabled>Select industries</option>
+            <option value="CPG">CPG</option>
+            <option value="Retail">Retail</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Fashion">Fashion</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Technology">Technology</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Sports">Sports</option>
+            <option value="Travel">Travel</option>
+            <option value="Automotive">Automotive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tableEditTacticSummary">Summary</label>
+          <textarea class="form-textarea" id="tableEditTacticSummary" rows="6"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="tableEditTacticModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="tableEditTacticModalConfirm">Update Tactic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Remove Tactic Modal (Table) -->
+  <div class="modal-overlay" id="tableRemoveModal">
+    <div class="modal shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Remove tactic?</h2>
+        <button class="modal-close" id="tableRemoveModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">Are you sure you want to remove this tactic? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="tableRemoveModalCancel">Cancel</button>
+        <button class="btn btn-danger" id="tableRemoveModalConfirm">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Sidepanel -->
+  <div class="filter-sidepanel" id="filterSidepanel">
+    <button class="filter-sidepanel-close" id="filterSidepanelClose">
+      <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+        <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="filter-sidepanel-content">
+      <div class="filter-sidepanel-header">
+        <h2 class="filter-sidepanel-title">Filter tactics</h2>
+      </div>
+      <div class="filter-sidepanel-body">
+        <!-- Status -->
+        <div class="filter-group">
+          <label class="filter-group-label">Status</label>
+          <div class="filter-options">
+            <label class="radio-option">
+              <input type="radio" name="filterStatus" value="all" checked>
+              <span class="radio-indicator"></span>
+              <span class="radio-label">All</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterStatus" value="active">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">Active</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterStatus" value="inactive">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">Inactive</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Publishing -->
+        <div class="filter-group">
+          <label class="filter-group-label">Publishing</label>
+          <div class="filter-options">
+            <label class="radio-option">
+              <input type="radio" name="filterPublishing" value="all" checked>
+              <span class="radio-indicator"></span>
+              <span class="radio-label">All</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterPublishing" value="up-to-date">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">Up to date</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterPublishing" value="modified">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">Modified</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterPublishing" value="draft">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">Draft</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Industry -->
+        <div class="filter-group">
+          <label class="filter-group-label">Industry</label>
+          <select class="filter-select" id="filterIndustry">
+            <option value="">Select industry...</option>
+            <option value="CPG">CPG</option>
+            <option value="Retail">Retail</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Fashion">Fashion</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Technology">Technology</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Sports">Sports</option>
+            <option value="Travel">Travel</option>
+            <option value="Automotive">Automotive</option>
+          </select>
+        </div>
+
+        <!-- Best practices -->
+        <div class="filter-group">
+          <label class="filter-group-label">Best practices</label>
+          <div class="filter-options">
+            <label class="radio-option">
+              <input type="radio" name="filterBestPractices" value="all" checked>
+              <span class="radio-indicator"></span>
+              <span class="radio-label">All</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterBestPractices" value="none">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">No best practices</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Linked objectives -->
+        <div class="filter-group">
+          <label class="filter-group-label">Linked objectives</label>
+          <div class="filter-options">
+            <label class="radio-option">
+              <input type="radio" name="filterLinkedObjectives" value="all" checked>
+              <span class="radio-indicator"></span>
+              <span class="radio-label">All</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="filterLinkedObjectives" value="none">
+              <span class="radio-indicator"></span>
+              <span class="radio-label">No linked objectives</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="filter-sidepanel-footer">
+        <div class="filter-footer-left">
+          <button class="btn btn-ghost" id="filterCancel">Cancel</button>
+          <button class="btn btn-link" id="filterReset">Reset filters</button>
+        </div>
+        <button class="btn btn-primary" id="filterApply">Filter tactics</button>
+      </div>
+    </div>
+  </div>
+  <div class="filter-sidepanel-overlay" id="filterOverlay"></div>
+
+  <!-- Snackbar Container -->
+  <div class="snackbar-container" id="snackbarContainer"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

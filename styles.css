@@ -1,0 +1,2473 @@
+/* Soul Design System - CSS Variables from Figma */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Layers */
+  --color-layer-level-0: #f3f3f5;
+  --color-layer-level-1: #ffffff;
+  --color-layer-level-3: #e7e7e7;
+  --color-layer-main-navigation: #111114;
+  --color-layer-warning: #fcf6c5;
+  
+  /* Text */
+  --color-on-layer-primary: #24242b;
+  --color-on-layer-secondary: #505057;
+  --color-on-layer-tertiary: #9d9da0;
+  --color-on-layer-inverse: #f9f9fa;
+  --color-on-layer-interactive: #003beb;
+  --color-on-layer-success: #148134;
+  --color-on-layer-danger: #da2828;
+  
+  /* Buttons */
+  --color-button-primary: #0c4bff;
+  --color-button-ghost: transparent;
+  --color-button-light: rgba(255, 255, 255, 0.7);
+  --color-button-danger: #da2828;
+  --color-button-gradient-start: rgba(0, 0, 0, 0);
+  --color-button-gradient-end: rgba(0, 0, 0, 0.1);
+  
+  /* Borders */
+  --color-border-primary: rgba(0, 0, 0, 0.2);
+  --color-border-secondary: rgba(0, 0, 0, 0.1);
+  --color-border-warning: #f6d84e;
+  --color-border-info-emphasis: #003beb;
+  
+  /* Table */
+  --color-table-row-odd: #ffffff;
+  --color-table-row-even: #f9f9fa;
+  --color-table-row-hover: #d5efff;
+  --color-table-row-hover-border: #85c7ff;
+  
+  /* Tooltip/Snackbar */
+  --color-tooltip-default: #24242b;
+  
+  /* Shadows */
+  --color-shadow-drop-10: rgba(0, 0, 0, 0.1);
+  --color-shadow-drop-20: rgba(0, 0, 0, 0.2);
+  --color-shadow-drop-30: rgba(0, 0, 0, 0.3);
+  --color-shadow-inner: rgba(0, 0, 0, 0.05);
+  
+  /* Spacing */
+  --space-0: 0px;
+  --space-1: 3px;
+  --space-2: 6px;
+  --space-3: 9px;
+  --space-4: 12px;
+  --space-5: 18px;
+  --space-6: 24px;
+  --space-7: 30px;
+  --space-8: 36px;
+  
+  /* Border Radius */
+  --border-radius-small: 2px;
+  --border-radius-medium: 6px;
+  --border-radius-large: 8px;
+  --border-radius-pill: 999px;
+  
+  /* Layout */
+  --sidebar-width: 240px;
+  
+  /* Badge Colors - from Figma */
+  /* DRAFT: gray background, gray border, dark text */
+  --badge-draft-bg: var(--color-layer-level-0);
+  --badge-draft-color: var(--color-on-layer-primary);
+  --badge-draft-border: var(--color-border-primary);
+  /* MODIFIED: yellow/warning background and border */
+  --badge-modified-bg: var(--color-layer-warning);
+  --badge-modified-color: var(--color-on-layer-primary);
+  --badge-modified-border: var(--color-border-warning);
+  
+  /* Toggle Active Color - blue per Figma */
+  --toggle-active-color: var(--color-button-primary);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+.headline-1 {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 42px;
+  letter-spacing: -0.021px;
+}
+
+.headline-2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: -0.017px;
+}
+
+.headline-3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.011px;
+}
+
+.headline-4 {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.headline-5 {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.01px;
+  text-transform: uppercase;
+}
+
+.body-medium {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.body-small {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.005px;
+}
+
+.text-secondary {
+  color: var(--color-on-layer-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-on-layer-tertiary);
+}
+
+.text-interactive {
+  color: var(--color-on-layer-interactive);
+}
+
+.text-success {
+  color: var(--color-on-layer-success);
+}
+
+.text-danger {
+  color: var(--color-on-layer-danger);
+}
+
+/* Shadows */
+.shadow-100 {
+  box-shadow: 
+    0 1px 3px var(--color-shadow-drop-20),
+    0 0 0.5px var(--color-shadow-drop-30),
+    inset 0 0 1px var(--color-shadow-inner),
+    inset 0 0.25px 0 0.25px var(--color-shadow-inner);
+}
+
+.shadow-200 {
+  box-shadow: 
+    0 5px 12px var(--color-shadow-drop-10),
+    0 1px 3px var(--color-shadow-drop-20),
+    0 0 0.5px var(--color-shadow-drop-30),
+    inset 0 0 1px var(--color-shadow-inner),
+    inset 0 0.25px 0 0.25px var(--color-shadow-inner);
+}
+
+.shadow-300 {
+  box-shadow: 
+    0 10px 16px var(--color-shadow-drop-10),
+    0 1px 5px var(--color-shadow-drop-20),
+    0 0 0.5px var(--color-shadow-drop-30),
+    inset 0 0 1px var(--color-shadow-inner),
+    inset 0 0.25px 0 0.25px var(--color-shadow-inner);
+}
+
+.shadow-400 {
+  box-shadow: 
+    0 10px 24px var(--color-shadow-drop-20),
+    0 1px 5px var(--color-shadow-drop-20),
+    0 0 0.5px var(--color-shadow-drop-30),
+    inset 0 0 1px var(--color-shadow-inner),
+    inset 0 0.25px 0 0.25px var(--color-shadow-inner);
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+
+/* App Layout */
+.app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* App without sidebar (editor view) */
+.app-no-sidebar {
+  background: var(--color-layer-level-0);
+}
+
+.app-no-sidebar .main-content {
+  width: 100%;
+}
+
+/* ============================================
+   SIDEBAR - Main Menu (Figma structure)
+   ============================================ */
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-layer-main-navigation);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Sidebar Header - "Production / BUTLER" */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sidebar-logo {
+  width: 18px;
+  height: 18px;
+  color: var(--color-button-primary);
+  flex-shrink: 0;
+}
+
+.sidebar-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sidebar-env {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-app-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-on-layer-inverse);
+}
+
+.sidebar-menu-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.15s ease;
+}
+
+.sidebar-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-on-layer-inverse);
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3) 0;
+}
+
+/* Section Group */
+.nav-section {
+  margin-bottom: var(--space-2);
+}
+
+.nav-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-2) var(--space-5);
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.nav-section-header:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.nav-section-header .chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.nav-section.collapsed .nav-section-header .chevron {
+  transform: rotate(-90deg);
+}
+
+.nav-section-items {
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height 0.3s ease;
+}
+
+.nav-section.collapsed .nav-section-items {
+  max-height: 0;
+}
+
+/* Navigation Items */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-5);
+  padding-left: var(--space-6);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-on-layer-inverse);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-on-layer-inverse);
+  font-weight: 500;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-button-primary);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.nav-item.active .nav-item-icon {
+  opacity: 1;
+}
+
+/* Expandable Nav Group (e.g., Fuel) */
+.nav-group {
+  margin-bottom: var(--space-1);
+}
+
+.nav-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-2) var(--space-5);
+  padding-left: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.nav-group-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-on-layer-inverse);
+}
+
+.nav-group-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-group-header .chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-group.expanded .nav-group-header .chevron {
+  transform: rotate(90deg);
+}
+
+.nav-group-items {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.nav-group.expanded .nav-group-items {
+  max-height: 300px;
+}
+
+.nav-group-items .nav-item {
+  padding-left: calc(var(--space-6) + var(--space-5));
+  font-size: 13px;
+}
+
+/* User Section at Bottom */
+.sidebar-user {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sidebar-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.sidebar-user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar-user-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-on-layer-inverse);
+}
+
+.sidebar-logout-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.15s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-on-layer-inverse);
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+  min-height: 0; /* Allow flex child to shrink and scroll */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 36px; /* Per Figma: py-12px px-36px */
+  background: var(--color-layer-level-1);
+  box-shadow: inset 0px -1px 0px 0px #d7d8d9; /* Per Figma */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: -0.017px;
+  color: #2f3744; /* Per Figma: Layout/Gray 800 */
+}
+
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Content Area - scrollable container for tabs and table */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-layer-level-0);
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Allow flex child to shrink and scroll */
+}
+
+/* ============================================
+   COMPONENTS - Buttons
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  min-width: 36px;
+  min-height: 36px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--color-button-primary);
+  color: var(--color-on-layer-inverse);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--color-button-gradient-start), var(--color-button-gradient-end));
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-ghost {
+  background: var(--color-button-ghost);
+  color: var(--color-on-layer-primary);
+  border: 1px solid var(--color-border-primary);
+}
+
+.btn-ghost:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Invisible/Tertiary button - used in header per Figma */
+.btn-invisible {
+  background: transparent;
+  color: var(--color-on-layer-primary);
+  border: none;
+  padding: 9px 6px; /* Per Figma */
+}
+
+.btn-invisible:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-invisible svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-danger {
+  background: var(--color-button-danger);
+  color: var(--color-on-layer-inverse);
+}
+
+.btn-icon {
+  padding: var(--space-3);
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.btn-small {
+  padding: var(--space-2) var(--space-3);
+  min-width: 30px;
+  min-height: 30px;
+  font-size: 11px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-border-info-emphasis);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   COMPONENTS - Badges
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.01px;
+  text-transform: uppercase;
+  border-radius: var(--border-radius-medium);
+  white-space: nowrap;
+}
+
+/* DRAFT badge - gray per Figma */
+.badge-draft {
+  background: var(--color-layer-level-0);
+  color: var(--color-on-layer-primary);
+  border: 1px solid var(--color-border-primary);
+}
+
+/* MODIFIED badge - yellow/warning per Figma */
+.badge-modified {
+  background: var(--color-layer-warning);
+  color: var(--color-on-layer-primary);
+  border: 1px solid var(--color-border-warning);
+}
+
+.badge-success {
+  background: rgba(20, 129, 52, 0.1);
+  color: var(--color-on-layer-success);
+  border: 1px solid var(--color-on-layer-success);
+}
+
+/* ============================================
+   COMPONENTS - Toggle Switch
+   ============================================ */
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: var(--color-on-layer-tertiary);
+  border-radius: var(--border-radius-pill);
+  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px var(--color-shadow-drop-20);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+}
+
+.toggle-input:checked + .toggle-track {
+  background: var(--toggle-active-color);
+}
+
+.toggle-input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(16px);
+}
+
+.toggle:hover .toggle-thumb {
+  box-shadow: 0 1px 3px var(--color-shadow-drop-20), 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-on-layer-primary);
+}
+
+.toggle-input:focus-visible + .toggle-track {
+  outline: 2px solid var(--color-border-info-emphasis);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   COMPONENTS - Tabs
+   ============================================ */
+
+.tab-list {
+  display: flex;
+  gap: 24px; /* Per Figma */
+  padding-left: 36px; /* Align with page header content */
+  padding-right: 36px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--color-layer-level-0); /* Gray background - scrolls with content */
+  border-bottom: 1px solid var(--color-border-primary); /* Gray line under tabs per Figma */
+  margin-bottom: 0; /* No margin - table container has its own margin */
+  align-items: flex-end; /* Align tabs to bottom */
+}
+
+.tab {
+  position: relative;
+  padding: 6px 0 12px 0; /* Per Figma: pt-6px pb-12px */
+  font-size: 13px; /* Per Figma */
+  font-weight: 400; /* Regular per Figma */
+  line-height: 18px; /* Per Figma */
+  color: var(--color-on-layer-primary); /* #24242b per Figma */
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent; /* Placeholder for active state */
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--color-on-layer-interactive);
+}
+
+.tab.active {
+  color: var(--color-on-layer-interactive); /* #003beb per Figma */
+  border-bottom-color: var(--color-on-layer-interactive); /* 2px blue line per Figma */
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-border-info-emphasis);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   COMPONENTS - Dropdown Menu
+   ============================================ */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  min-width: 210px;
+  padding: var(--space-2);
+  background: var(--color-layer-level-1);
+  border-radius: var(--border-radius-medium);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.15s ease;
+  transform-origin: top right;
+}
+
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(var(--space-1));
+  animation: dropdownSlide 0.15s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(var(--space-1)) scale(1);
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: none;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--color-layer-level-0);
+}
+
+.dropdown-item.danger {
+  color: var(--color-on-layer-danger);
+}
+
+.dropdown-item .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-on-layer-secondary);
+}
+
+.dropdown-item.danger .icon {
+  color: var(--color-on-layer-danger);
+}
+
+/* Dropdown Item with Indicator (purple dot) */
+.dropdown-item-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.dropdown-item-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--badge-draft-color);
+  flex-shrink: 0;
+}
+
+.dropdown-divider {
+  height: 1px;
+  margin: var(--space-2) 0;
+  background: var(--color-border-secondary);
+}
+
+/* ============================================
+   COMPONENTS - Modal
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  background: var(--color-layer-level-1);
+  border-radius: var(--border-radius-large);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+  animation: modalSlideUp 0.25s ease;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--color-on-layer-primary);
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  color: var(--color-on-layer-tertiary);
+  transition: all 0.15s ease;
+}
+
+.modal-close:hover {
+  background: var(--color-layer-level-0);
+  color: var(--color-on-layer-primary);
+}
+
+.modal-body {
+  padding: var(--space-5) var(--space-6);
+}
+
+.modal-description {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-on-layer-secondary);
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border-secondary);
+}
+
+/* Modal Large - for forms with more content */
+.modal.modal-large {
+  max-width: 560px;
+}
+
+/* ============================================
+   COMPONENTS - Form Fields
+   ============================================ */
+
+.form-group {
+  margin-bottom: var(--space-5);
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  margin-bottom: var(--space-2);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.form-input:focus {
+  background: var(--color-layer-level-1);
+  border-color: var(--color-border-info-emphasis);
+  box-shadow: 0 0 0 3px rgba(0, 59, 235, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--color-on-layer-tertiary);
+}
+
+.form-select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  padding-right: 36px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23505057' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.form-select:focus {
+  background-color: var(--color-layer-level-1);
+  border-color: var(--color-border-info-emphasis);
+  box-shadow: 0 0 0 3px rgba(0, 59, 235, 0.1);
+}
+
+.form-select option {
+  background: var(--color-layer-level-1);
+  color: var(--color-on-layer-primary);
+}
+
+.form-select option:disabled {
+  color: var(--color-on-layer-tertiary);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.form-textarea:focus {
+  background: var(--color-layer-level-1);
+  border-color: var(--color-border-info-emphasis);
+  box-shadow: 0 0 0 3px rgba(0, 59, 235, 0.1);
+}
+
+.form-textarea::placeholder {
+  color: var(--color-on-layer-tertiary);
+}
+
+/* ============================================
+   COMPONENTS - Snackbar
+   ============================================ */
+
+.snackbar-container {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.snackbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  padding-left: calc(var(--space-4) + 6px);
+  background: var(--color-tooltip-default);
+  color: var(--color-on-layer-inverse);
+  border-radius: var(--border-radius-medium);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: snackbarIn 0.3s ease forwards;
+  min-width: 280px;
+}
+
+.snackbar.out {
+  animation: snackbarOut 0.3s ease forwards;
+}
+
+@keyframes snackbarIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes snackbarOut {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Left border color indicator */
+.snackbar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-on-layer-success);
+}
+
+.snackbar.warning::before {
+  background: var(--color-border-warning);
+}
+
+.snackbar.error::before {
+  background: var(--color-on-layer-danger);
+}
+
+.snackbar-message {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+/* ============================================
+   COMPONENTS - Input Fields
+   ============================================ */
+
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--color-border-info-emphasis);
+  box-shadow: 0 0 0 3px rgba(0, 59, 235, 0.1);
+}
+
+.input::placeholder {
+  color: var(--color-on-layer-tertiary);
+}
+
+.search-input {
+  position: relative;
+  width: 440px; /* Per Figma */
+}
+
+.search-input input {
+  width: 100%;
+  padding: 9px; /* Per Figma: space-3 */
+  padding-left: 32px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1); /* White background per Figma */
+  border: 1px solid var(--color-border-primary); /* Border per Figma */
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.search-input input:focus {
+  border-color: var(--color-border-info-emphasis);
+  box-shadow: var(--shadow-focus-ring);
+}
+
+.search-input input::placeholder {
+  color: var(--color-on-layer-tertiary);
+}
+
+.search-input .icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-on-layer-primary);
+  pointer-events: none;
+}
+
+.search-input .icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================
+   TABLE - Tactics Table (Figma structure)
+   ============================================ */
+
+.table-container {
+  background: var(--color-layer-level-1);
+  border-radius: var(--border-radius-large);
+  margin: 24px 36px; /* Top/bottom 24px, left/right 36px to align with header */
+  overflow: visible; /* Allow sticky to work */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Sticky table header - sticks to top of content-area */
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-layer-level-1);
+}
+
+.table thead tr {
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+/* Shadow on sticky header when scrolled - from Figma Shadow 200 */
+/* Applied to last th cell using ::after pseudo-element for the full-width shadow */
+.table thead.is-sticky tr {
+  position: relative;
+}
+
+.table thead.is-sticky tr::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 6px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08), transparent);
+  pointer-events: none;
+}
+
+.table thead.is-sticky th {
+  border-radius: 0;
+}
+
+.table th {
+  padding: 0; /* Remove padding - button will have padding */
+  font-size: 11px;
+  font-weight: 400; /* Regular per Figma */
+  line-height: 16px;
+  letter-spacing: 0.005px; /* Per Figma */
+  color: var(--color-on-layer-primary); /* #24242b per Figma */
+  text-align: left;
+  background: var(--color-layer-level-1);
+  border-bottom: none; /* No bottom border per Figma */
+  border-right: 1px solid var(--color-border-primary); /* Right border between columns per Figma */
+  white-space: nowrap;
+  vertical-align: middle;
+  height: 66px; /* Total height per Figma */
+}
+
+.table th:last-child {
+  border-right: none; /* No right border on last column */
+}
+
+/* For non-sortable header cells, add padding back */
+.table th:not(:has(.table-header-sortable)) {
+  padding: 15px 12px;
+}
+
+.table-header-sortable {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease, background 0.15s ease;
+  background: none;
+  border: none;
+  padding: 15px 12px; /* Full cell padding */
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%; /* Fill entire cell width */
+  height: 100%; /* Fill entire cell height */
+}
+
+.table-header-sortable:hover {
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-0); /* Subtle hover background */
+}
+
+.table-header-sortable:hover .sort-icon {
+  opacity: 1;
+}
+
+.table-header-sortable .sort-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.3;
+  transition: all 0.15s ease;
+}
+
+/* Active sorting state */
+.table-header-sortable.sort-active {
+  color: var(--color-on-layer-interactive);
+}
+
+.table-header-sortable.sort-active .sort-icon {
+  opacity: 1;
+  color: var(--color-on-layer-interactive);
+}
+
+/* Descending sort (arrow down) - default icon direction */
+.table-header-sortable.sort-desc .sort-icon {
+  transform: rotate(0deg);
+}
+
+/* Ascending sort (arrow up) */
+.table-header-sortable.sort-asc .sort-icon {
+  transform: rotate(180deg);
+}
+
+.table td {
+  padding: 12px; /* Per Figma: p-12px */
+  font-size: 13px;
+  line-height: 18px;
+  border-top: 1px solid var(--color-border-primary); /* Per Figma */
+  border-right: 1px solid var(--color-border-primary); /* Per Figma */
+  border-bottom: none;
+  border-left: none;
+  vertical-align: middle;
+}
+
+.table td:last-child {
+  border-right: none; /* No right border on last cell */
+}
+
+.table tbody tr {
+  background: var(--color-table-row-odd);
+  cursor: pointer;
+  transition: background 0.1s ease, box-shadow 0.1s ease;
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--color-table-row-even);
+}
+
+.table tbody tr:hover {
+  background: var(--color-table-row-hover);
+  box-shadow: inset 0 0 0 1px var(--color-table-row-hover-border);
+}
+
+.table tbody tr:hover .row-actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row Actions (visible on hover) */
+.row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  margin-left: auto; /* Push to right edge */
+  padding-left: var(--space-6); /* Space from tactic name */
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.row-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: var(--space-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  color: var(--color-on-layer-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.row-action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.row-action-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-on-layer-primary);
+}
+
+.row-action-btn.danger:hover {
+  background: rgba(218, 40, 40, 0.1);
+  color: var(--color-on-layer-danger);
+}
+
+.row-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Status Indicator Dot - from Figma (green=active, red=inactive) */
+.status-dot {
+  display: block;
+  width: 13px;
+  height: 13px;
+  min-width: 13px;
+  min-height: 13px;
+  border-radius: 50%;
+  background-color: #da2828;
+  flex-shrink: 0;
+}
+
+.status-dot.active {
+  background-color: #148134;
+}
+
+.status-dot.inactive {
+  background-color: #da2828;
+}
+
+/* Center the status dot in table cell */
+.table td:first-child {
+  text-align: center;
+}
+
+/* Table Cell - Tactic Name + Badge */
+.table-cell-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+  min-width: 0; /* Allow truncation */
+}
+
+.table-cell-name a {
+  color: var(--color-on-layer-interactive);
+  text-decoration: none;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 1 auto; /* Don't grow, can shrink, auto basis - badge stays next to text */
+  min-width: 0;
+  max-width: fit-content;
+}
+
+/* Badge stays next to the tactic name */
+.table-cell-name .badge {
+  flex-shrink: 0;
+}
+
+.table-cell-name a:hover {
+  text-decoration: underline;
+}
+
+/* Table Cell - Labels (Chips) */
+.table-cell-labels {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.label-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  background: var(--color-layer-level-0);
+  border-radius: var(--border-radius-pill);
+  color: var(--color-on-layer-secondary);
+}
+
+/* Table Cell - Modified By */
+.table-cell-modified {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.modified-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-on-layer-primary);
+}
+
+.modified-date {
+  font-size: 11px;
+  color: var(--color-on-layer-tertiary);
+}
+
+/* Table Cell - Numbers (Stats) */
+.table-cell-number {
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--color-on-layer-primary);
+}
+
+/* ============================================
+   EDITOR LAYOUT
+   ============================================ */
+
+.editor-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Editor Header (Figma: X btn, title, badge, status, divider, toggles, divider, publish, more) */
+/* Editor Header - responsive layout per Figma */
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-layer-level-1);
+  border-bottom: 1px solid var(--color-border-secondary);
+  min-height: 60px;
+  gap: var(--space-4);
+}
+
+.editor-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Close Button (X) - Ghost style with border per Figma */
+.editor-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  color: var(--color-on-layer-primary);
+  transition: all 0.15s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.editor-close-btn:hover {
+  background: var(--color-layer-level-0);
+  color: var(--color-on-layer-primary);
+}
+
+/* Title Group with Edit - per Figma layout */
+/* Group fills available space, but title "hugs" content when short */
+.editor-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.editor-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.011px;
+  color: #2f3744;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Hug content when short, but allow shrinking when long */
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Badge in title area - between title and pencil, stays next to title */
+.editor-title-badge {
+  flex-shrink: 0;
+}
+
+.editor-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  color: var(--color-on-layer-primary);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.editor-edit-btn:hover {
+  background: var(--color-layer-level-0);
+  color: var(--color-on-layer-primary);
+}
+
+/* Status Text - per Figma: gray text showing current state */
+/* Status text - fixed width, right-aligned to divider */
+.editor-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--color-on-layer-secondary);
+  white-space: nowrap;
+  width: 140px;
+  flex-shrink: 0;
+  justify-content: flex-end;
+}
+
+.editor-status.created {
+  color: var(--color-on-layer-secondary);
+}
+
+.editor-status.saving {
+  color: var(--color-on-layer-secondary);
+}
+
+.editor-status.saved {
+  color: var(--color-on-layer-secondary);
+}
+
+.editor-status.publishing {
+  color: var(--color-on-layer-secondary);
+}
+
+.editor-status.published {
+  color: var(--color-on-layer-secondary);
+}
+
+.editor-status-text {
+  white-space: nowrap;
+}
+
+/* Header Right Section - per Figma layout */
+.editor-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.header-divider {
+  width: 1px;
+  height: 18px;
+  background: #d7d8d9;
+  flex-shrink: 0;
+}
+
+/* Toggle with Label in Header - per Figma */
+.header-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.header-toggle-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-on-layer-primary);
+}
+
+/* Editor Content */
+.editor-content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-6);
+  background: var(--color-layer-level-0);
+}
+
+.editor-card {
+  background: var(--color-layer-level-1);
+  border-radius: var(--border-radius-large);
+  padding: var(--space-6);
+}
+
+/* Toolbar */
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  color: var(--color-on-layer-secondary);
+  transition: all 0.1s ease;
+}
+
+.toolbar-btn:hover {
+  background: var(--color-layer-level-0);
+  color: var(--color-on-layer-primary);
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--color-border-secondary);
+  margin: 0 var(--space-2);
+}
+
+/* Toolbar Widget Button - matching Figma "</> Add best practices widget" */
+.toolbar-widget-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.toolbar-widget-btn:hover {
+  background: var(--color-layer-level-0);
+  border-color: var(--color-on-layer-secondary);
+}
+
+.editor-textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: var(--space-4);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 24px;
+  color: var(--color-on-layer-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+/* ============================================
+   SIDE PANEL - Best Practices (Figma structure)
+   ============================================ */
+
+/* Side Panel - per Figma */
+.side-panel {
+  width: 470px;
+  background: #f3f3f5;
+  border-left: 1px solid #d7d8d9;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Side Panel Header with Tabs - per Figma */
+.side-panel-tabs {
+  display: flex;
+  gap: 24px;
+  padding: 0 24px;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 60px;
+  align-items: flex-end;
+}
+
+.side-panel-tab {
+  padding: 18px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.011px;
+  color: #24242b;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.side-panel-tab:hover {
+  color: var(--color-on-layer-interactive);
+}
+
+.side-panel-tab.active {
+  color: #003beb;
+  border-bottom-color: #003beb;
+}
+
+/* Side Panel Content - per Figma (36px padding) */
+.side-panel-content {
+  flex: 1;
+  overflow: auto;
+  padding: 36px;
+}
+
+/* Description Text - per Figma (11px) */
+.side-panel-description {
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.005px;
+  color: #505057;
+  margin-bottom: 24px;
+}
+
+/* Add Best Practice Button - per Figma (light button style) */
+.add-practice-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #24242b;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.add-practice-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.add-practice-btn svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Accordion - Numbered per Figma (card style with shadow) */
+.accordion {
+  background: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0px 0px 0.5px 0px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px;
+  min-height: 48px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #24242b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s ease;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.accordion-number {
+  width: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #24242b;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.accordion-title {
+  font-weight: 700;
+  color: #24242b;
+}
+
+.accordion-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+  color: var(--color-on-layer-tertiary);
+}
+
+.accordion.open .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-on-layer-secondary);
+  padding: 0 var(--space-4);
+  padding-left: calc(var(--space-4) + 22px + var(--space-3));
+}
+
+.accordion.open .accordion-content {
+  max-height: 200px;
+  padding: var(--space-4);
+  padding-left: calc(var(--space-4) + 22px + var(--space-3));
+  padding-top: 0;
+}
+
+/* Add link at bottom - per Figma (invisible button style) */
+.add-practice-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #24242b;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 6px;
+}
+
+.add-practice-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.add-practice-link svg {
+  width: 11px;
+  height: 11px;
+}
+
+.add-practice-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+.gap-6 { gap: var(--space-6); }
+
+.hidden {
+  display: none !important;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Smooth scrollbar */
+.content-area::-webkit-scrollbar,
+.side-panel-content::-webkit-scrollbar,
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content-area::-webkit-scrollbar-track,
+.side-panel-content::-webkit-scrollbar-track,
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content-area::-webkit-scrollbar-thumb,
+.side-panel-content::-webkit-scrollbar-thumb,
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: var(--border-radius-pill);
+}
+
+.content-area::-webkit-scrollbar-thumb:hover,
+.side-panel-content::-webkit-scrollbar-thumb:hover,
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--color-on-layer-tertiary);
+}
+
+/* Loading states */
+.btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.btn-primary.loading::after {
+  border-color: var(--color-on-layer-inverse);
+  border-right-color: transparent;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Saving animation */
+.editor-status.saving .editor-status-text {
+  animation: textPulse 1s infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ============================================
+   FILTER SIDEPANEL
+   ============================================ */
+
+/* Filter button state when filters are active */
+.btn-filter {
+  position: relative;
+}
+
+.btn-filter.active {
+  background: rgba(208, 226, 255, 0.5);
+  color: var(--color-on-layer-interactive);
+  border-color: transparent;
+}
+
+.btn-filter.active svg {
+  color: var(--color-on-layer-interactive);
+}
+
+.filter-badge {
+  display: none;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--space-1);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.01px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+}
+
+.btn-filter.active .filter-badge {
+  display: block;
+}
+
+/* Sidepanel overlay */
+.filter-sidepanel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.filter-sidepanel-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sidepanel container */
+.filter-sidepanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 420px;
+  background: var(--color-layer-level-0);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-sidepanel.open {
+  transform: translateX(0);
+}
+
+/* Close button (dark, positioned outside) */
+.filter-sidepanel-close {
+  position: absolute;
+  top: 12px;
+  left: -36px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-layer-main-navigation);
+  border: none;
+  border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
+  color: var(--color-on-layer-inverse);
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease, visibility 0.15s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Show close button only when sidepanel is open */
+.filter-sidepanel.open .filter-sidepanel-close {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filter-sidepanel-close:hover {
+  background: #2a2a2f;
+}
+
+/* Sidepanel content wrapper */
+.filter-sidepanel-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.filter-sidepanel-header {
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-layer-level-1);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.filter-sidepanel-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.011px;
+  color: var(--color-on-layer-primary);
+}
+
+/* Body */
+.filter-sidepanel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6);
+}
+
+/* Filter groups */
+.filter-group {
+  margin-bottom: var(--space-6);
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--color-on-layer-secondary);
+  margin-bottom: var(--space-2);
+  text-transform: none;
+}
+
+/* Filter options (radio buttons) */
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Radio option */
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-layer-level-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.radio-option input[type="radio"]:checked + .radio-indicator {
+  background: var(--color-button-primary);
+  border-color: var(--color-border-secondary);
+}
+
+.radio-option input[type="radio"]:checked + .radio-indicator::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-on-layer-inverse);
+}
+
+.radio-label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+}
+
+/* Filter select dropdown */
+.filter-select {
+  width: 100%;
+  padding: var(--space-3);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-on-layer-primary);
+  background: var(--color-layer-level-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L9 11L13 7' stroke='%2324242B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-2) center;
+  padding-right: 30px;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-border-info-emphasis);
+}
+
+.filter-select option[value=""] {
+  color: var(--color-on-layer-tertiary);
+}
+
+/* Footer */
+.filter-sidepanel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-layer-level-1);
+  border-top: 1px solid var(--color-border-primary);
+}
+
+.filter-footer-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+/* Link button style */
+.btn-link {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-on-layer-interactive);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  display: none; /* Hidden by default, shown when filters changed */
+}
+
+.btn-link:hover {
+  opacity: 0.8;
+}
+
+.btn-link.visible {
+  display: inline-block;
+}

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Tactic - Butler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app app-no-sidebar">
+    <!-- Main Content (full width - no sidebar in editor view) -->
+    <main class="main-content">
+      <div class="editor-layout">
+        <div class="editor-main">
+          <!-- Editor Header - per Figma layout -->
+          <header class="editor-header">
+            <div class="editor-header-left">
+              <!-- Close Button (X) - Ghost style with border -->
+              <a href="index.html" class="editor-close-btn" title="Close">
+                <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+                  <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+
+              <!-- Title Group with Badge and Edit button -->
+              <div class="editor-title-group">
+                <span class="editor-title" id="editorTitle">Develop a cont</span>
+                <!-- Badge (shown for DRAFT or MODIFIED state) -->
+                <span class="badge badge-draft" id="editorBadge">DRAFT</span>
+                <!-- Edit/Pencil button - opens settings modal -->
+                <button class="editor-edit-btn" id="editSettingsBtn" title="Edit settings">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3861 2.43934C13.8003 1.85355 12.8505 1.85355 12.2647 2.43934L10.7071 3.99698L13 6.28987L14.5576 4.73223C15.1434 4.14645 15.1434 3.1967 14.5576 2.61091L14.3861 2.43934ZM12.2929 6.99698L10 4.70409L3 11.7041L3 13.997L5.29289 13.997L12.2929 6.99698ZM11.5576 1.73223C12.5339 0.755923 14.1169 0.755922 15.0932 1.73223L15.2647 1.90381C16.2411 2.88012 16.2411 4.46303 15.2647 5.43934L5.70711 14.997L2 14.997L2 11.2899L11.5576 1.73223ZM17 16.997H1V15.997H17V16.997Z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="editor-header-right">
+              <!-- Status Text (gray text showing current state) -->
+              <div class="editor-status created" id="editorStatus">
+                <span class="editor-status-text">Created</span>
+              </div>
+
+              <!-- Divider -->
+              <span class="header-divider"></span>
+
+              <!-- Active Toggle with label -->
+              <div class="header-toggle">
+                <span class="header-toggle-label">Active</span>
+                <label class="toggle">
+                  <input type="checkbox" class="toggle-input" id="activeToggleInput">
+                  <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                  </span>
+                </label>
+              </div>
+
+              <!-- Preview Toggle with label -->
+              <div class="header-toggle">
+                <span class="header-toggle-label">Preview</span>
+                <label class="toggle">
+                  <input type="checkbox" class="toggle-input" id="previewToggleInput">
+                  <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                  </span>
+                </label>
+              </div>
+
+              <!-- Divider -->
+              <span class="header-divider"></span>
+
+              <!-- Publish Button -->
+              <button class="btn btn-primary" id="publishBtn">Publish</button>
+
+              <!-- More Button (horizontal meatball) - Invisible style -->
+              <div class="dropdown" id="moreDropdown">
+                <button class="btn btn-ghost btn-icon" id="moreBtn" title="More actions" style="border: none;">
+                  <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+                    <circle cx="4" cy="9" r="1.5" fill="currentColor"/>
+                    <circle cx="9" cy="9" r="1.5" fill="currentColor"/>
+                    <circle cx="14" cy="9" r="1.5" fill="currentColor"/>
+                  </svg>
+                </button>
+                <!-- Dropdown for DRAFT/MODIFIED state -->
+                <div class="dropdown-menu shadow-300" id="dropdownMenuDraftModified">
+                  <button class="dropdown-item" data-action="edit">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3861 2.43934C13.8003 1.85355 12.8505 1.85355 12.2647 2.43934L10.7071 3.99698L13 6.28987L14.5576 4.73223C15.1434 4.14645 15.1434 3.1967 14.5576 2.61091L14.3861 2.43934ZM12.2929 6.99698L10 4.70409L3 11.7041L3 13.997L5.29289 13.997L12.2929 6.99698ZM11.5576 1.73223C12.5339 0.755923 14.1169 0.755922 15.0932 1.73223L15.2647 1.90381C16.2411 2.88012 16.2411 4.46303 15.2647 5.43934L5.70711 14.997L2 14.997L2 11.2899L11.5576 1.73223ZM17 16.997H1V15.997H17V16.997Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Edit
+                  </button>
+                  <button class="dropdown-item" data-action="duplicate">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 3.5C1 2.11929 2.11929 1 3.5 1H11V2H3.5C2.67157 2 2 2.67157 2 3.5V10H1V3.5ZM4 6.5C4 5.11929 5.11929 4 6.5 4H13.5C14.8807 4 16 5.11929 16 6.5V13.5C16 14.8807 14.8807 16 13.5 16H6.5C5.11929 16 4 14.8807 4 13.5V6.5ZM6.5 5C5.67157 5 5 5.67157 5 6.5V13.5C5 14.3284 5.67157 15 6.5 15H13.5C14.3284 15 15 14.3284 15 13.5V6.5C15 5.67157 14.3284 5 13.5 5H6.5Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Duplicate
+                  </button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" data-action="discard" id="discardBtn">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M7.35363 11.1484L4.20718 8.00199H12C13.6569 8.00199 15 9.34516 15 11.002C15 12.6589 13.6569 14.002 12 14.002H9V15.002H12C14.2091 15.002 16 13.2112 16 11.002C16 8.7929 14.2092 7.00205 12.0001 7.00201L4.20718 7.00199L7.35363 3.85554L6.64652 3.14844L2.29297 7.50199L6.64652 11.8555L7.35363 11.1484Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Discard changes
+                  </button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item danger" data-action="remove">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.999 2H5.99902V1H11.999V2ZM3.99902 4H1.99902V3H15.999V4H13.9995V14.5C13.9995 15.8807 12.8802 17 11.4995 17H6.49902C5.11831 17 3.99902 15.8807 3.99902 14.5V4ZM4.99902 4V14.5C4.99902 15.3284 5.6706 16 6.49902 16H11.4995C12.3279 16 12.9995 15.3284 12.9995 14.5V4H4.99902ZM6.99902 14V6H7.99902V14H6.99902ZM9.99902 14V6H10.999V14H9.99902Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Remove
+                  </button>
+                </div>
+                <!-- Dropdown for PUBLISHED state (no Discard changes) -->
+                <div class="dropdown-menu shadow-300 hidden" id="dropdownMenuPublished">
+                  <button class="dropdown-item" data-action="edit">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3861 2.43934C13.8003 1.85355 12.8505 1.85355 12.2647 2.43934L10.7071 3.99698L13 6.28987L14.5576 4.73223C15.1434 4.14645 15.1434 3.1967 14.5576 2.61091L14.3861 2.43934ZM12.2929 6.99698L10 4.70409L3 11.7041L3 13.997L5.29289 13.997L12.2929 6.99698ZM11.5576 1.73223C12.5339 0.755923 14.1169 0.755922 15.0932 1.73223L15.2647 1.90381C16.2411 2.88012 16.2411 4.46303 15.2647 5.43934L5.70711 14.997L2 14.997L2 11.2899L11.5576 1.73223ZM17 16.997H1V15.997H17V16.997Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Edit
+                  </button>
+                  <button class="dropdown-item" data-action="duplicate">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 3.5C1 2.11929 2.11929 1 3.5 1H11V2H3.5C2.67157 2 2 2.67157 2 3.5V10H1V3.5ZM4 6.5C4 5.11929 5.11929 4 6.5 4H13.5C14.8807 4 16 5.11929 16 6.5V13.5C16 14.8807 14.8807 16 13.5 16H6.5C5.11929 16 4 14.8807 4 13.5V6.5ZM6.5 5C5.67157 5 5 5.67157 5 6.5V13.5C5 14.3284 5.67157 15 6.5 15H13.5C14.3284 15 15 14.3284 15 13.5V6.5C15 5.67157 14.3284 5 13.5 5H6.5Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Duplicate
+                  </button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item danger" data-action="remove">
+                    <span class="icon">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.999 2H5.99902V1H11.999V2ZM3.99902 4H1.99902V3H15.999V4H13.9995V14.5C13.9995 15.8807 12.8802 17 11.4995 17H6.49902C5.11831 17 3.99902 15.8807 3.99902 14.5V4ZM4.99902 4V14.5C4.99902 15.3284 5.6706 16 6.49902 16H11.4995C12.3279 16 12.9995 15.3284 12.9995 14.5V4H4.99902ZM6.99902 14V6H7.99902V14H6.99902ZM9.99902 14V6H10.999V14H9.99902Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <!-- Editor Content -->
+          <div class="editor-content">
+            <div class="editor-card shadow-100">
+              <!-- Toolbar - matching Figma with icons from Figma -->
+              <div class="editor-toolbar">
+                <button class="toolbar-btn" title="Bold">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path clip-rule="evenodd" d="m6 4v4.00008l3-.00006v-.00002c.26264 0 .52272-.05173.76537-.15224.24263-.10051.46313-.24783.64883-.43355.1857-.18571.333-.40619.4336-.64884.1005-.24265.1522-.50273.1522-.76537s-.0517-.52272-.1522-.76537c-.1006-.24265-.2479-.46313-.4336-.64884-.1857-.18572-.4062-.33304-.64883-.43355-.24265-.10051-.50273-.15224-.76537-.15224zm6.0627 4.57288c.2625-.31249.4761-.66384.6328-1.04215.201-.4853.3045-1.00544.3045-1.53073s-.1035-1.04543-.3045-1.53073c-.201-.48531-.4956-.92626-.8671-1.2977-.3714-.37143-.8124-.66607-1.2977-.86709s-1.00541-.30448-1.5307-.30448h-3.5c-.82843 0-1.5.67157-1.5 1.5v11.0001c0 .8284.67157 1.5 1.5 1.5h4.5c.5254 0 1.0456-.1036 1.5307-.3046.4853-.201.9263-.4956 1.2977-.8671.3715-.3714.6661-.8124.8671-1.2977s.3045-1.0054.3045-1.5307-.1035-1.0454-.3045-1.5307c-.201-.48534-.4956-.92629-.8671-1.29773-.2304-.23047-.4877-.43137-.7657-.59869zm-2.0627 1.42712-4 .0001v4h4c.2625 0 .5226-.0518.7654-.1523.2426-.1006.4631-.2479.6488-.4336s.333-.4062.4336-.6488c.1005-.2427.1522-.5028.1522-.7654s-.0517-.5227-.1522-.7654c-.1006-.2426-.2479-.4631-.4336-.6488s-.4062-.333-.6488-.4336c-.2427-.1005-.5027-.1522-.7654-.1522z" fill="currentColor" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <button class="toolbar-btn" title="Italic">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path clip-rule="evenodd" d="m10.2861 4h-3.2861v-1h8v1h-3.6498l-3.63635 10h3.28615v1h-8v-1h3.64979z" fill="currentColor" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <button class="toolbar-btn" title="Underline">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path clip-rule="evenodd" d="m5.5 2v6.5c0 .45963.09053.91475.26642 1.33939.17589.42461.4337.81051.75871 1.13551.325.325.71084.5828 1.13548.7587s.87976.2664 1.33939.2664.91475-.0905 1.3394-.2664c.4246-.1759.8105-.4337 1.1355-.7587s.5828-.7109.7587-1.13551c.1759-.42464.2664-.87976.2664-1.33939v-6.5h1v6.5c0 .59095-.1164 1.17611-.3425 1.7221-.2262.5459-.5577 1.042-.9755 1.4599-.4179.4178-.914.7493-1.4599.9755-.546.2261-1.13115.3425-1.7221.3425s-1.17611-.1164-1.72208-.3425c-.54596-.2262-1.04204-.5577-1.4599-.9755-.41786-.4179-.74933-.914-.97548-1.4599-.22614-.54599-.34254-1.13115-.34254-1.7221v-6.5zm-3.5 14v-1h14v1z" fill="currentColor" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <span class="toolbar-divider"></span>
+                <button class="toolbar-btn" title="Bullet list">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <g fill="currentColor">
+                      <path clip-rule="evenodd" d="m17 5.5h-8v-1h8zm0 8h-8v-1h8z" fill-rule="evenodd"/>
+                      <path d="m6 13c0 1.1046-.89543 2-2 2s-2-.8954-2-2 .89543-2 2-2 2 .8954 2 2z"/>
+                      <path d="m6 5c0 1.10457-.89543 2-2 2s-2-.89543-2-2 .89543-2 2-2 2 .89543 2 2z"/>
+                    </g>
+                  </svg>
+                </button>
+                <button class="toolbar-btn" title="Numbered list">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path clip-rule="evenodd" d="m5 2v5h1v1h-3v-1h1v-3h-1v-1h1v-1zm12 3.5h-8v-1h8zm-12 5.6091h-2v-1h2.45c.30376 0 .55.2462.55.55v2.2909c0 .3038-.24624.55-.55.55h-1.45v1.5h2v1h-2.45c-.30376 0-.55-.2462-.55-.55v-2.4c0-.3038.24624-.55.55-.55h1.45zm12 2.3909h-8v-1h8z" fill="currentColor" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <span class="toolbar-divider"></span>
+                <button class="toolbar-btn" title="Link">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path clip-rule="evenodd" d="m14.1213 3.87868c-1.1716-1.17157-3.0711-1.17157-4.24265 0l-.00444.00444-2.02513 1.97484-.69817-.71594 2.02292-1.97274c1.56227-1.5598 4.09327-1.55904 5.65457.00229 1.5613 1.56134 1.5621 4.0923.0023 5.65458l-1.9727 2.02295-.716-.6982 1.9793-2.02961c1.1715-1.17157 1.1716-3.07104 0-4.24261zm-7.97489 7.26782 4.99999-5.00005.7071.70711-4.99998 5.00004zm-.28848-3.29742-1.97922 2.02963c-1.17158 1.17159-1.1716 3.07099-.00003 4.24259s3.07107 1.1716 4.24264 0l.00444-.0044 2.02514-1.9749.6981.716-2.02286 1.9727c-1.56228 1.5598-4.09323 1.5591-5.65457-.0023-1.56133-1.5613-1.56209-4.0922-.0023-5.65452l1.97272-2.02296z" fill="currentColor" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <button class="toolbar-btn" title="Image">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <g fill="currentColor">
+                      <path clip-rule="evenodd" d="m2 4.5c0-1.38071 1.11929-2.5 2.5-2.5h9c1.3807 0 2.5 1.11929 2.5 2.5v9c0 1.3807-1.1193 2.5-2.5 2.5h-9c-1.38071 0-2.5-1.1193-2.5-2.5zm2.5-1.5c-.82843 0-1.5.67157-1.5 1.5v6.2929l2.7738-2.7738c.40512-.40513 1.06713-.38772 1.4504.03814l3.7534 4.17046 1.2189-1.5238c.4144-.518 1.2091-.4963 1.5947.0435l1.2088 1.6924v-7.9398c0-.82843-.6716-1.5-1.5-1.5zm10.4048 11.027-1.9274-2.6984-1.219 1.5237c-.3855.482-1.1113.5031-1.5241.0443l-3.7534-4.1704-3.4809 3.4809v1.2929c0 .8284.67157 1.5 1.5 1.5h9c.643 0 1.1915-.4046 1.4048-.973z" fill-rule="evenodd"/>
+                      <path d="m13 6.5c0 .82843-.6716 1.5-1.5 1.5s-1.5-.67157-1.5-1.5.6716-1.5 1.5-1.5 1.5.67157 1.5 1.5z"/>
+                    </g>
+                  </svg>
+                </button>
+                <button class="toolbar-btn" title="Code">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path d="m11.3633 2.12988-3.7549 14.00002-.96582-.2588 3.75492-14.00001zm-5.65822 3.58301-3.28809 3.28809 3.28809 3.28812-.70703.707-3.99512-3.99512 3.99512-3.99512zm11.29202 3.28809-3.9951 3.99512-.7071-.707 3.2881-3.28812-3.2881-3.28809.7071-.70703z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <span class="toolbar-divider"></span>
+                <!-- Add best practices widget button - matching Figma -->
+                <button class="toolbar-widget-btn" title="Add best practices widget">
+                  <svg fill="none" height="18" viewBox="0 0 18 18" width="18">
+                    <path d="m11.3633 2.12988-3.7549 14.00002-.96582-.2588 3.75492-14.00001zm-5.65822 3.58301-3.28809 3.28809 3.28809 3.28812-.70703.707-3.99512-3.99512 3.99512-3.99512zm11.29202 3.28809-3.9951 3.99512-.7071-.707 3.2881-3.28812-3.2881-3.28809.7071-.70703z" fill="currentColor"/>
+                  </svg>
+                  Add best practices widget
+                </button>
+              </div>
+              
+              <!-- Textarea -->
+              <textarea class="editor-textarea" id="editorTextarea" placeholder="Start writing your tactic content..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Panel - Best Practices -->
+        <aside class="side-panel">
+          <!-- Tabs -->
+          <div class="side-panel-tabs">
+            <button class="side-panel-tab active" data-tab="best-practices">Best practices editor</button>
+            <button class="side-panel-tab" data-tab="activity-log">Activity log</button>
+          </div>
+
+          <!-- Content -->
+          <div class="side-panel-content">
+            <p class="side-panel-description">Best practices outline the recommended methods for implementing tactics.</p>
+            <p class="side-panel-description" style="margin-top: -8px;">Ensure that the best practices section is integrated into the Tactics overview at the appropriate location; otherwise, it will be placed below by default.</p>
+            
+            <button class="add-practice-btn">
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+                <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add best practice
+            </button>
+
+            <!-- Best Practices Accordions (numbered) -->
+            <div id="bestPracticesContent">
+              <!-- Populated by JavaScript -->
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <!-- Publish Modal -->
+  <div class="modal-overlay" id="publishModal">
+    <div class="modal shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Publish to activate</h2>
+        <button class="modal-close" id="publishModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">This tactic needs to be published before it can be activated. Would you like to publish and activate it now?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="publishModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="publishModalConfirm">Publish & activate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discard Modal -->
+  <div class="modal-overlay" id="discardModal">
+    <div class="modal shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Discard changes?</h2>
+        <button class="modal-close" id="discardModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">Are you sure you want to discard all unpublished changes? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="discardModalCancel">Cancel</button>
+        <button class="btn btn-danger" id="discardModalConfirm">Discard changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Remove Modal -->
+  <div class="modal-overlay" id="removeModal">
+    <div class="modal shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Remove tactic?</h2>
+        <button class="modal-close" id="removeModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">Are you sure you want to remove this tactic? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="removeModalCancel">Cancel</button>
+        <button class="btn btn-danger" id="removeModalConfirm">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Tactic Modal -->
+  <div class="modal-overlay" id="editTacticModal">
+    <div class="modal modal-large shadow-300">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Tactic</h2>
+        <button class="modal-close" id="editTacticModalClose">
+          <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+            <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="editTacticName">Tactic name</label>
+          <input type="text" class="form-input" id="editTacticName" placeholder="Enter tactic name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editTacticIndustries">Industries</label>
+          <select class="form-select" id="editTacticIndustries">
+            <option value="" disabled>Select industries</option>
+            <option value="CPG">CPG</option>
+            <option value="Retail">Retail</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Fashion">Fashion</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Technology">Technology</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Sports">Sports</option>
+            <option value="Travel">Travel</option>
+            <option value="Automotive">Automotive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editTacticSummary">Summary</label>
+          <textarea class="form-textarea" id="editTacticSummary" placeholder="Enter a summary for this tactic..." rows="6"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="editTacticModalCancel">Cancel</button>
+        <button class="btn btn-primary" id="editTacticModalConfirm">Update Tactic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Snackbar Container -->
+  <div class="snackbar-container" id="snackbarContainer"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
