@@ -799,25 +799,14 @@ html, body {
 .tab-list {
   display: flex;
   gap: 24px; /* Per Figma */
-  padding-left: var(--space-8);
-  padding-right: var(--space-8);
+  padding-left: var(--space-6);
+  padding-right: 0;
   padding-top: var(--space-6);
   padding-bottom: 0;
   background: var(--color-layer-level-0); /* Gray background - scrolls with content */
-  border-bottom: none;
+  border-bottom: 1px solid var(--color-border-primary);
   margin-bottom: 0; /* No margin - table container has its own margin */
   align-items: flex-end; /* Align tabs to bottom */
-  position: relative;
-}
-
-.tab-list::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: var(--space-8);
-  right: var(--space-8);
-  height: 1px;
-  background: var(--color-border-primary);
 }
 
 .tab {
@@ -1548,18 +1537,17 @@ html, body {
   background-color: #da2828;
 }
 
-/* Center the status dot in table cell */
-.table td:first-child {
-  text-align: center;
-}
-
-/* Table Cell - Tactic Name + Badge */
+/* Table Cell - Tactic Name + Badge + Status Dot */
 .table-cell-name {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   position: relative;
   min-width: 0; /* Allow truncation */
+}
+
+.table-cell-name .status-dot {
+  flex-shrink: 0;
 }
 
 .table-cell-name a {

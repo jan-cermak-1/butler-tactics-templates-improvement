@@ -162,10 +162,8 @@ function renderTacticsTable() {
     return `
       <tr data-id="${tactic.id}" onclick="openTactic(${tactic.id})">
         <td>
-          <span class="status-dot ${dotClass}"></span>
-        </td>
-        <td>
           <div class="table-cell-name">
+            <span class="status-dot ${dotClass}"></span>
             <a href="editor.html?id=${tactic.id}" onclick="event.stopPropagation()" title="${tactic.name}">${tactic.name}</a>
             ${statusBadge}
             <span class="row-actions">
