@@ -799,8 +799,8 @@ html, body {
 .tab-list {
   display: flex;
   gap: 24px; /* Per Figma */
-  padding-left: var(--space-6);
-  padding-right: var(--space-6);
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
   padding-top: var(--space-6);
   padding-bottom: 0;
   background: var(--color-layer-level-0); /* Gray background - scrolls with content */
@@ -1305,7 +1305,7 @@ html, body {
 .table-container {
   background: var(--color-layer-level-1);
   border-radius: var(--border-radius-large);
-  margin: 24px 36px; /* Top/bottom 24px, left/right 36px to align with header */
+  margin: var(--space-6) var(--space-8); /* Top/bottom 24px, left/right 36px to align with header */
   overflow: visible; /* Allow sticky to work */
 }
 
