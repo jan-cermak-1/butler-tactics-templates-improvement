@@ -954,12 +954,8 @@ function handlePublish() {
   const tactic = getCurrentTactic();
   if (!tactic) return;
   
-  // If trying to publish a draft that needs activation
-  if ((tactic.status === 'draft' || tactic.status === 'modified') && !tactic.active) {
-    openModal('publishModal');
-    return;
-  }
-  
+  // Publish button directly publishes without modal
+  // Modal is only shown when user tries to ACTIVATE via toggle
   performPublish();
 }
 
