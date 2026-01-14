@@ -823,15 +823,15 @@ html, body {
 .tab {
   position: relative;
   padding: 6px 0 12px 0; /* Per Figma: pt-6px pb-12px */
-  font-size: 13px; /* Per Figma */
-  font-weight: 400; /* Regular per Figma */
-  line-height: 18px; /* Per Figma */
+  font-size: var(--font-size-medium, 13px); /* Per Figma */
+  font-weight: var(--font-weight-regular, 400); /* Regular per Figma */
+  line-height: var(--line-height-medium, 18px); /* Per Figma */
   color: var(--color-on-layer-primary); /* #24242b per Figma */
   background: none;
   border: none;
-  border-bottom: 2px solid transparent; /* Placeholder for active state */
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .tab:hover {
@@ -840,7 +840,8 @@ html, body {
 
 .tab.active {
   color: var(--color-on-layer-interactive); /* #003beb per Figma */
-  border-bottom-color: var(--color-on-layer-interactive); /* 2px blue line per Figma */
+  border-bottom: 2px solid var(--color-on-layer-interactive); /* 2px blue line per Figma */
+  padding-bottom: 10px; /* 12px - 2px border = 10px to keep same height */
 }
 
 .tab:focus-visible {
