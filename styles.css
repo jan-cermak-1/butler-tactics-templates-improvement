@@ -1609,6 +1609,12 @@ html, body {
   color: var(--color-on-layer-tertiary);
 }
 
+/* Table Cell - Toggle (Active column) */
+.table-cell-toggle {
+  text-align: center;
+  cursor: pointer;
+}
+
 /* Table Cell - Numbers (Stats) */
 .table-cell-number {
   font-variant-numeric: tabular-nums;

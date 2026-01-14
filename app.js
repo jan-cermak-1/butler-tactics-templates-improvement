@@ -180,9 +180,9 @@ function renderTacticsTable() {
             </span>
           </div>
         </td>
-        <td>
+        <td class="table-cell-toggle" onclick="event.stopPropagation(); handleToggleCellClick(event, ${tactic.id}, ${tactic.active})">
           <label class="toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" class="toggle-input" ${tactic.active ? 'checked' : ''} onchange="toggleTacticActive(${tactic.id}, this.checked)">
+            <input type="checkbox" class="toggle-input" ${tactic.active ? 'checked' : ''} onchange="event.stopPropagation(); toggleTacticActive(${tactic.id}, this.checked)">
             <span class="toggle-track">
               <span class="toggle-thumb"></span>
             </span>
@@ -221,6 +221,18 @@ function openTactic(id) {
   window.location.href = `editor.html?id=${id}`;
 }
 
+// Handle click on the whole toggle cell (outside the toggle itself)
+function handleToggleCellClick(event, id, currentActive) {
+  // Only handle if click was not on the toggle itself
+  if (event.target.closest('.toggle')) return;
+  
+  const checkbox = document.querySelector(`tr[data-id="${id}"] .toggle-input`);
+  if (checkbox) {
+    checkbox.checked = !currentActive;
+    toggleTacticActive(id, !currentActive);
+  }
+}
+
 function toggleTacticActive(id, active) {
   const tactic = APP_STATE.tactics.find(t => t.id === id);
   if (!tactic) return;
@@ -233,6 +245,16 @@ function toggleTacticActive(id, active) {
     // Uncheck the toggle since we can't activate yet
     const checkbox = document.querySelector(`tr[data-id="${id}"] .toggle-input`);
     if (checkbox) checkbox.checked = false;
+    return;
+  }
+  
+  // If trying to deactivate a tactic that has linked objectives, show confirmation modal
+  if (!active && tactic.linkedObjectivesCount > 0) {
+    APP_STATE.pendingDeactivation = id;
+    openModal('deactivateModal');
+    // Revert the toggle since we need confirmation
+    const checkbox = document.querySelector(`tr[data-id="${id}"] .toggle-input`);
+    if (checkbox) checkbox.checked = true;
     return;
   }
   
@@ -1309,6 +1331,31 @@ function setupModalListeners() {
         APP_STATE.pendingActivation = null;
       } else {
         performPublish(true);
+      }
+    });
+  }
+  
+  // Deactivate modal
+  const deactivateModalCancel = document.getElementById('deactivateModalCancel');
+  const deactivateModalClose = document.getElementById('deactivateModalClose');
+  const deactivateModalConfirm = document.getElementById('deactivateModalConfirm');
+  
+  if (deactivateModalCancel) deactivateModalCancel.addEventListener('click', () => {
+    closeModal('deactivateModal');
+    APP_STATE.pendingDeactivation = null;
+  });
+  if (deactivateModalClose) deactivateModalClose.addEventListener('click', () => {
+    closeModal('deactivateModal');
+    APP_STATE.pendingDeactivation = null;
+  });
+  if (deactivateModalConfirm) {
+    deactivateModalConfirm.addEventListener('click', () => {
+      if (APP_STATE.pendingDeactivation) {
+        updateTactic(APP_STATE.pendingDeactivation, { active: false });
+        renderTacticsTable();
+        closeModal('deactivateModal');
+        showSnackbar('Tactic deactivated');
+        APP_STATE.pendingDeactivation = null;
       }
     });
   }
