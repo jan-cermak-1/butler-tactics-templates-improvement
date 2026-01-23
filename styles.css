@@ -582,6 +582,7 @@ html, body {
 .content-area {
   flex: 1;
   overflow-y: auto;
+  overflow-x: auto; /* Enable horizontal scroll when content exceeds width */
   background: var(--color-layer-level-0);
   display: flex;
   flex-direction: column;
@@ -1313,6 +1314,8 @@ html, body {
 
 .table {
   width: 100%;
+  min-width: 1030px; /* Sum of all min-widths: 340+80+100+110+240+140 = 1010px + padding */
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -1363,6 +1366,85 @@ html, body {
   white-space: nowrap;
   vertical-align: middle;
   height: 66px; /* Total height per Figma */
+}
+
+/* Responsive column widths */
+.table th:nth-child(1) { 
+  width: 100%; /* Tactic name - fill remaining space */
+  min-width: 340px;
+}
+
+.table th:nth-child(2) { 
+  width: 80px; /* Active - fixed */
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.table th:nth-child(3) { 
+  width: 100px; /* Best practices - fixed */
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.table th:nth-child(4) { 
+  width: 110px; /* Linked Objectives - fixed */
+  min-width: 110px;
+  max-width: 110px;
+}
+
+.table th:nth-child(5) { 
+  width: 240px; /* Suggested industry - fixed width */
+  min-width: 240px;
+  max-width: 240px;
+}
+
+/* Suggested industry column - reduce padding for 2 rows of tags */
+.table td:nth-child(5) {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.table th:nth-child(6) { 
+  width: 140px; /* Last edit by - fixed */
+  min-width: 140px;
+  max-width: 140px;
+}
+
+/* Apply same widths to table cells */
+.table td:nth-child(1) { 
+  width: 100%;
+  min-width: 340px;
+  max-width: none;
+}
+
+.table td:nth-child(2) { 
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.table td:nth-child(3) { 
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.table td:nth-child(4) { 
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+}
+
+.table td:nth-child(5) { 
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+}
+
+.table td:nth-child(6) { 
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
 }
 
 .table th:last-child {
@@ -1436,6 +1518,9 @@ html, body {
   border-bottom: none;
   border-left: none;
   vertical-align: middle;
+  height: 60px; /* Fixed cell height */
+  max-height: 60px;
+  overflow: hidden;
 }
 
 .table td:last-child {
@@ -1446,6 +1531,7 @@ html, body {
   background: var(--color-table-row-odd);
   cursor: pointer;
   transition: background 0.1s ease, box-shadow 0.1s ease;
+  height: 60px; /* Fixed row height */
 }
 
 .table tbody tr:nth-child(even) {
@@ -1476,11 +1562,11 @@ html, body {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.15s ease, visibility 0.15s ease;
-  margin-left: auto; /* Push to right edge */
-  padding-left: var(--space-6); /* Space from tactic name */
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
+  position: absolute; /* Absolutní pozicování */
+  right: 0; /* Padding buňky (12px) už poskytuje správnou vzdálenost */
+  top: 50%;
+  transform: translateY(-50%); /* Vertikální vystředění */
+  z-index: 2;
 }
 
 .row-action-btn {
@@ -1544,7 +1630,9 @@ html, body {
   align-items: center;
   gap: var(--space-2);
   position: relative;
-  min-width: 0; /* Allow truncation */
+  min-width: 0;
+  width: 100%;
+  padding-right: 90px; /* Reserve space for row actions on hover */
 }
 
 .table-cell-name .status-dot {
@@ -1558,9 +1646,8 @@ html, body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 0 1 auto; /* Don't grow, can shrink, auto basis - badge stays next to text */
   min-width: 0;
-  max-width: fit-content;
+  max-width: 100%; /* Allow shrinking when needed, but stay next to badge */
 }
 
 /* Badge stays next to the tactic name */
@@ -1572,11 +1659,24 @@ html, body {
   text-decoration: underline;
 }
 
+/* First column (Tactic name) needs special handling for hover actions */
+.table td:nth-child(1) {
+  position: relative;
+}
+
+/* Remove extra padding from table-cell-name when not hovering */
+.table tbody tr:not(:hover) .table-cell-name {
+  padding-right: 0;
+}
+
 /* Table Cell - Labels (Chips) */
 .table-cell-labels {
   display: flex;
   gap: var(--space-2);
   flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: 48px; /* 2 rows: ~20px per row + 6px gap = 46px, use 48px */
+  overflow: hidden;
 }
 
 .label-chip {
@@ -2477,4 +2577,23 @@ html, body {
 
 .btn-link.visible {
   display: inline-block;
+}
+
+/* ============================================
+   RESPONSIVE - Media Queries
+   ============================================ */
+
+/* Responsive padding for smaller viewports */
+@media (max-width: 1559px) {
+  .table-container {
+    margin: var(--space-6) var(--space-6); /* 24px instead of 36px */
+  }
+  
+  .tab-list {
+    margin-left: var(--space-6); /* 24px instead of 36px */
+  }
+  
+  .page-header {
+    padding: 12px var(--space-6); /* 24px instead of 36px */
+  }
 }
